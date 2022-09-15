@@ -4,9 +4,8 @@ const Ctrl = {}
 
 Ctrl.getHome = async (req, res)=>{
     const personas = await user.find();
-    console.log(personas);
-    res.json(personas);
-   
+
+    res.json(personas);   
 }
 
 Ctrl.postHome = async (req, res)=>{
@@ -19,17 +18,25 @@ Ctrl.postHome = async (req, res)=>{
         pais
     })
 
-    const resultado = await persona.save()
+    const guardar = await persona.save()
 
-    console.log(resultado);
+    console.log(guardar);
 }
 
-Ctrl.putHome = (req, res)=>{
-    res.send('Put home');
+Ctrl.putHome = async (req, res)=>{
+    const {id, nombre, edad, pais} = req.body;
+
+    const actualizar = await user.updateOne({_id: id},{$set: {nombre, edad, pais }})
+    
+    console.log(actualizar);
 }
 
-Ctrl.deleteHome = (req, res)=>{
-    res.send('Delete home');
+Ctrl.deleteHome = async (req, res)=>{
+    const {id} = req.body;
+
+    const eliminar = await user.deleteOne({_id: id});
+
+    res.json(eliminar);
 }
 
 module.exports = Ctrl;

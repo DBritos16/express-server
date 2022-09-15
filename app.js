@@ -10,5 +10,4 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(require('./routes/user.routes'))
 
-
 app.listen(process.env.PORT, ()=>console.log(`Servidor corriendo en el puerto ${process.env.PORT}`))

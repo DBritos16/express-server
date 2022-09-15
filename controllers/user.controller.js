@@ -26,9 +26,14 @@ Ctrl.postHome = async (req, res)=>{
 Ctrl.putHome = async (req, res)=>{
     const {id, nombre, edad, pais} = req.body;
 
-    const actualizar = await user.updateOne({_id: id},{$set: {nombre, edad, pais }})
+    const actualizar = await user.updateOne({_id: id},
+        {$set: {
+            nombre, 
+            edad, 
+            pais }
+        })
     
-    console.log(actualizar);
+    res.json(actualizar);
 }
 
 Ctrl.deleteHome = async (req, res)=>{

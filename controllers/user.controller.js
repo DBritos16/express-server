@@ -2,13 +2,13 @@
 const user = require('../models/user')
 const Ctrl = {}
 
-Ctrl.getHome = async (req, res)=>{
+Ctrl.getUser = async (req, res)=>{
     const personas = await user.find();
 
     res.json(personas);   
 }
 
-Ctrl.postHome = async (req, res)=>{
+Ctrl.postUser = async (req, res)=>{
     
     const {nombre, edad, pais} = req.body;
 
@@ -20,10 +20,10 @@ Ctrl.postHome = async (req, res)=>{
 
     const guardar = await persona.save()
 
-    console.log(guardar);
+    res.json(guardar);
 }
 
-Ctrl.putHome = async (req, res)=>{
+Ctrl.putUser = async (req, res)=>{
     const {id, nombre, edad, pais} = req.body;
 
     const actualizar = await user.updateOne({_id: id},
@@ -36,7 +36,7 @@ Ctrl.putHome = async (req, res)=>{
     res.json(actualizar);
 }
 
-Ctrl.deleteHome = async (req, res)=>{
+Ctrl.deleteUser = async (req, res)=>{
     const {id} = req.body;
 
     const eliminar = await user.deleteOne({_id: id});

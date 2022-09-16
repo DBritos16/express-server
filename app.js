@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 /* app.use(morgan('dev')) */
 
-app.use(require('./routes/user.routes'))
+app.use(require('./routes/user.routes'));
+app.use(require('./routes/task.routes'));
 
 app.listen(process.env.PORT, ()=>console.log(`Servidor corriendo en el puerto ${process.env.PORT}`))

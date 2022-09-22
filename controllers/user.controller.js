@@ -3,45 +3,47 @@ const user = require('../models/user')
 const Ctrl = {}
 
 Ctrl.getUser = async (req, res)=>{
-    const personas = await user.find();
+    const {id} = req.params["iduser"];
+    const users = await user.find({_id: id});
 
-    res.json(personas);   
+    res.json(users);   
 }
 
 Ctrl.postUser = async (req, res)=>{
     
     const {nombre, edad, pais} = req.body;
 
-    const persona = new user({
+    const newUser = new user({
         nombre,
         edad,
         pais
     })
 
-    const guardar = await persona.save()
+    const saveUser = await newUser.save()
 
-    res.json(guardar);
+    res.json(saveUser);
 }
 
 Ctrl.putUser = async (req, res)=>{
     const {id, nombre, edad, pais} = req.body;
 
-    const actualizar = await user.updateOne({_id: id},
+    const updateUser = await user.updateOne({_id: id},
         {$set: {
             nombre, 
             edad, 
             pais }
         })
     
-    res.json(actualizar);
+    res.json(updateUser);
 }
 
 Ctrl.deleteUser = async (req, res)=>{
     const {id} = req.body;
+    const {id1} = req.params;
 
-    const eliminar = await user.deleteOne({_id: id});
+    const deleteUser = await user.deleteOne({_id: id});
 
-    res.json(eliminar);
+    res.json(deleteUser);
 }
 
 module.exports = Ctrl;

@@ -17,8 +17,6 @@ app.set('view engine', 'ejs');
 
 app.use(require('./routes/user.routes'));
 app.use(require('./routes/task.routes'));
-app.use(require('./routes/home.routes'));
-
-
+app.use(require('./routes/edit.routes'));
 
 app.listen(process.env.PORT, ()=>console.log(`Servidor corriendo en el puerto ${process.env.PORT}`));

@@ -4,7 +4,7 @@ const task = require('../models/task')
 Ctrl.getTask = async (req, res)=>{
     const tasks = await task.find();
 
-    res.json(tasks);
+    res.render('index', {tasks});
 }
 
 Ctrl.postTask = async (req, res)=>{
@@ -16,13 +16,14 @@ Ctrl.postTask = async (req, res)=>{
         entrega
     })
 
-    const saveNewTask = await newTask.save();
-
-    res.json(saveNewTask);
+    await newTask.save();
+    
+    res.redirect('./task');
 }
 
 Ctrl.putTask = async (req, res)=>{
-    const {id, materia, tarea, entrega} = req.body;
+    const id = req.params.id
+    const {materia, tarea, entrega} = req.body;
 
     const updateTask = await task.updateOne({_id: id},
         {$set: {
@@ -31,11 +32,11 @@ Ctrl.putTask = async (req, res)=>{
             entrega }
         });
 
-    res.json(updateTask);
+    res.redirect('/task');
 }
 
 Ctrl.deleteTask = async (req, res)=>{
-    const {id} = req.body;
+    const id = req.params.id;
 
     const deleteTask = await task.deleteOne({_id: id});
 

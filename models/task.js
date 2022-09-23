@@ -4,6 +4,6 @@ const taskSchema = new Schema({
     materia: String,
     tarea: String,
     entrega: String
-}, {versionKey: false})
+}, {versionKey: false, timestamps: true})
 
 module.exports = model('task', taskSchema);

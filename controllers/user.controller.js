@@ -3,8 +3,7 @@ const user = require('../models/user')
 const Ctrl = {}
 
 Ctrl.getUser = async (req, res)=>{
-    const {id} = req.params["iduser"];
-    const users = await user.find({_id: id});
+    const users = await user.find();
 
     res.json(users);   
 }

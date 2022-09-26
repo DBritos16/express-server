@@ -25,7 +25,7 @@ Ctrl.putTask = async (req, res)=>{
     const id = req.params.id
     const {materia, tarea, entrega} = req.body;
 
-    const updateTask = await task.updateOne({_id: id},
+    await task.updateOne({_id: id},
         {$set: {
             materia,
             tarea,
@@ -38,9 +38,9 @@ Ctrl.putTask = async (req, res)=>{
 Ctrl.deleteTask = async (req, res)=>{
     const id = req.params.id;
 
-    const deleteTask = await task.deleteOne({_id: id});
+    await task.deleteOne({_id: id});
 
-    res.json(deleteTask);
+    res.redirect('/task');
 }
 
 module.exports = Ctrl;

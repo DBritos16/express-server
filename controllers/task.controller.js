@@ -18,7 +18,8 @@ Ctrl.postTask = async (req, res)=>{
 
     await newTask.save();
     
-    res.redirect('./task');
+    res.json();
+    /* res.redirect('./task'); */
 }
 
 Ctrl.putTask = async (req, res)=>{
@@ -32,7 +33,7 @@ Ctrl.putTask = async (req, res)=>{
             entrega }
         });
 
-    res.redirect('/task');
+    res.status(200).json();
 }
 
 Ctrl.deleteTask = async (req, res)=>{
@@ -40,7 +41,7 @@ Ctrl.deleteTask = async (req, res)=>{
 
     await task.deleteOne({_id: id});
 
-    res.redirect('/task');
+    res.status(200).json();
 }
 
 module.exports = Ctrl;

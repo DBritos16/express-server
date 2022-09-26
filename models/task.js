@@ -7,3 +7,4 @@ const taskSchema = new Schema({
 }, {versionKey: false, timestamps: true})
 
 module.exports = model('task', taskSchema);
+

@@ -1,18 +1,17 @@
 const express = require('express');
 const path = require('path');
+const morgan = require('morgan');
 require('dotenv').config();
+require('./database/conection');
 require("ejs");
 
-
-
 const app = express();
-require('./database/conection');
 
 app.use(express.json());
+app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
-/* app.use(morgan('dev')) */
 
-app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 app.use(require('./routes/user.routes'));

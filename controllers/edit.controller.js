@@ -8,7 +8,7 @@ ctrl.getTask = async (req, res)=>{
     const id = req.params.id
     const getTask = await task.find({_id: id});
     
-    res.render('edit', {getTask})
+    res.json(getTask);
 }
 
 module.exports = ctrl;

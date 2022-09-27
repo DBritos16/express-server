@@ -11,8 +11,7 @@ const post = async()=>{
         'Content-Type':'application/json',
       }
     })
-
-    const res = await req;
+    const res = req;
 
     (res.ok)?window.location.href = '/task':console.log('error')
   }
